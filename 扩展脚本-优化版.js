@@ -15,7 +15,7 @@ const foreignNameservers = [
 const dnsConfig = {
   "enable": true,
   "listen": "0.0.0.0:1053",
-  "ipv6": false,
+  "ipv6": true,
   "prefer-h3": false,
   "respect-rules": true,
   "use-system-hosts": false,
@@ -234,7 +234,15 @@ function main(config) {
 
   // 覆盖原配置中DNS配置
   config["dns"] = dnsConfig;
-
+  // 添加geodata设置
+  config["geodata-mode"] = true;
+  config["geodata-loader"] = "standard";
+  config["geox-url"] = {
+    geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat",
+    geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat",
+    mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb",
+    asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb",
+  };
   // 覆盖原配置中的代理组
   config["proxy-groups"] = [
     {
@@ -244,14 +252,6 @@ function main(config) {
       "include-all": true,
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
-    },
-    {
-      ...groupBaseOption,
-      "name": "谷歌服务",
-      "type": "select",
-      "proxies": ["节点选择","全局直连"],
-      "include-all": true,
-      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg"
     },
     {
       ...groupBaseOption,
@@ -292,6 +292,14 @@ function main(config) {
       "include-all": true,
       "proxies": ["节点选择"],
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/tiktok.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "谷歌服务",
+      "type": "select",
+      "proxies": ["节点选择","全局直连"],
+      "include-all": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg"
     },
     {
       ...groupBaseOption,
@@ -383,4 +391,5 @@ function main(config) {
   return config;
 
 }
+
 
