@@ -263,14 +263,6 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "Netflix",
-      "type": "select",
-      "proxies": ["节点选择","全局直连"],
-      "include-all": true,
-      "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/netflix.svg"
-    },
-    {
-      ...groupBaseOption,
       "name": "电报消息",
       "type": "select",
       "proxies": ["节点选择","全局直连"],
@@ -316,6 +308,14 @@ function main(config) {
       "proxies": ["节点选择","全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/apple.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "Netflix",
+      "type": "select",
+      "proxies": ["节点选择","全局直连"],
+      "include-all": true,
+      "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/netflix.svg"
     },
     {
       ...groupBaseOption,
@@ -391,5 +391,6 @@ function main(config) {
   return config;
 
 }
+
 
 
