@@ -25,7 +25,7 @@ const dnsConfig = {
     "localhost.ptlogin2.qq.com",
     "localhost.sec.qq.com",
     "localhost.work.weixin.qq.com",
-    "+.in-addr.arpa", 
+    "+.in-addr.arpa",
     "+.ip6.arpa",
     "time.*.com",
     "time.*.gov",
@@ -148,25 +148,25 @@ const ruleProviders = {
     ...ruleProviderCommon,
     "behavior": "classical",
     "url": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/BilibiliHMT.txt",
-    "path": "./ruleset/xiaolin-007/BilibiliHMT.yaml"    
+    "path": "./ruleset/xiaolin-007/BilibiliHMT.yaml"
   },
   "AI": {
     ...ruleProviderCommon,
     "behavior": "classical",
     "url": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/AI.txt",
-    "path": "./ruleset/xiaolin-007/AI.yaml"    
+    "path": "./ruleset/xiaolin-007/AI.yaml"
   },
   "TikTok": {
     ...ruleProviderCommon,
     "behavior": "classical",
     "url": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/TikTok.txt",
-    "path": "./ruleset/xiaolin-007/TikTok.yaml"    
+    "path": "./ruleset/xiaolin-007/TikTok.yaml"
   },
   "Microsoft": {
     ...ruleProviderCommon,
     "behavior": "classical",
     "url": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/Microsoft.txt",
-    "path": "./ruleset/xiaolin-007/Microsoft.yaml"    
+    "path": "./ruleset/xiaolin-007/Microsoft.yaml"
   }
 };
 
@@ -188,8 +188,6 @@ const rules = [
   "RULE-SET,proxy,节点选择",
   "RULE-SET,gfw,节点选择",
   "RULE-SET,direct,全局直连",
-  "RULE-SET,lancidr,全局直连,no-resolve",
-  "RULE-SET,cncidr,全局直连,no-resolve",
   "RULE-SET,telegramcidr,电报消息,no-resolve",
   "GEOIP,LAN,全局直连,no-resolve",
   "GEOIP,CN,全局直连,no-resolve",
@@ -212,15 +210,16 @@ function main(config) {
   if (proxyCount === 0 && proxyProviderCount === 0) {
     throw new Error("配置文件中未找到任何代理");
   }
+
   config["dns"] = dnsConfig;
 
   config["geodata-mode"] = true;
   config["geodata-loader"] = "standard";
   config["geox-url"] = {
-    geoip: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip-lite.dat",
-    geosite: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat",
-    mmdb: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country-lite.mmdb",
-    asn: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
+    geoip: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip-lite.dat",
+    geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat",
+    mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country-lite.mmdb",
+    asn: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
   };
 
   config["proxy-groups"] = [
@@ -319,7 +318,7 @@ function main(config) {
       "type": "select",
       "proxies": ["全局直连", "节点选择"],
       "include-all": true,
-      "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
+      "filter": "(?i)港|hk|hongkong|台|tw|taiwan|澳|mo|macao",
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/bilibili.svg"
     },
     {
@@ -371,6 +370,5 @@ function main(config) {
       proxy.udp = true;
     });
   }
-
   return config;
 }
