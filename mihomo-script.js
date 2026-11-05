@@ -251,7 +251,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "AI",
       "type": "select",
-      "proxies": ["节点选择"],
+      "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg"
     },
@@ -259,7 +259,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "TikTok",
       "type": "select",
-      "proxies": ["节点选择"],
+      "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/tiktok.svg"
     },
@@ -307,7 +307,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "动画疯",
       "type": "select",
-      "proxies": ["节点选择"],
+      "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "filter": "(?i)台|tw|TW",
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/Bahamut.svg"
@@ -341,7 +341,6 @@ function main(config) {
       "name": "全局直连",
       "type": "select",
       "proxies": ["DIRECT", "节点选择"],
-      "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg"
     },
     {
@@ -356,8 +355,6 @@ function main(config) {
       "name": "漏网之鱼",
       "type": "select",
       "proxies": ["节点选择", "全局直连"],
-      "include-all": true,
-      "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg"
     }
   ];
